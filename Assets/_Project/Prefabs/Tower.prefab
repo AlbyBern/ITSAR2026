@@ -277,6 +277,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7825269389516732510}
   - component: {fileID: 1783051137040238960}
+  - component: {fileID: 3648951455235211598}
+  - component: {fileID: 6026012525651816749}
   m_Layer: 12
   m_Name: Tower
   m_TagString: Untagged
@@ -324,6 +326,45 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2, y: 3, z: 1.2}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &3648951455235211598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307234257774955515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652a66f278fb284478016dbd732454b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoTargeter
+  range: 11
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  scanInterval: 0.2
+  eyeHeight: 1
+--- !u!114 &6026012525651816749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307234257774955515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c26c4d587e9deb429b0ad42486807db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  targeter: {fileID: 3648951455235211598}
+  damage: 8
+  cooldown: 0.8
+  projectilePrefab: {fileID: 8754365920117698162, guid: eb6e9142e0161154fb69b6f89f3ff48b, type: 3}
+  muzzle: {fileID: 8427798584823366967}
+  projectileSpeed: 20
 --- !u!1 &8683427484637939733
 GameObject:
   m_ObjectHideFlags: 0

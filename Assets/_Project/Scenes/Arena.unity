@@ -3842,6 +3842,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1269237388}
+  - component: {fileID: 1269237391}
+  - component: {fileID: 1269237390}
+  - component: {fileID: 1269237389}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -3874,6 +3877,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1269237389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269237387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3a2d8f85672db479691a7e46a8b065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GemCounterUI
+  collector: {fileID: 1653389507}
+  label: {fileID: 1973563964}
+  format: 'Gemme: {0}'
+--- !u!114 &1269237390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269237387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b6bef57112fdf4e86d2064e73d962a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
+  target: {fileID: 562246702475253046}
+  fill: {fileID: 2000066911}
+--- !u!114 &1269237391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269237387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b6bef57112fdf4e86d2064e73d962a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
+  target: {fileID: 1653389508}
+  fill: {fileID: 1658485463}
 --- !u!1 &1316669762
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,7 +4444,10 @@ GameObject:
   - component: {fileID: 1653389508}
   - component: {fileID: 1653389507}
   - component: {fileID: 1653389506}
-  - component: {fileID: 1653389505}
+  - component: {fileID: 1653389512}
+  - component: {fileID: 1653389511}
+  - component: {fileID: 1653389510}
+  - component: {fileID: 1653389509}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4468,24 +4517,6 @@ MonoBehaviour:
   rotationSpeed: 720
   gravity: -20
   cameraTransform: {fileID: 1658393536}
---- !u!114 &1653389505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653389501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783271ca100346b4fbc4d8958abb3ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleShooter
-  targeter: {fileID: 1653389506}
-  projectilePrefab: {fileID: 8754365920117698162, guid: eb6e9142e0161154fb69b6f89f3ff48b, type: 3}
-  muzzle: {fileID: 718965398}
-  fireInterval: 0.6
-  damage: 10
-  projectileSpeed: 18
 --- !u!114 &1653389506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4533,6 +4564,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   destroyOnDeath: 0
+--- !u!114 &1653389509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0587cfce094f784e832a8318f2ee4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerPlacer
+  towerPrefab: {fileID: 7307234257774955515, guid: 7289a64ed097d484a85cb5e790899dac, type: 3}
+  cost: 10
+  placeDistance: 2.5
+  gridSize: 2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  blockingMask:
+    serializedVersion: 2
+    m_Bits: 4480
+  clearRadius: 0.9
+--- !u!114 &1653389510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3384e804fb97f274c9bfd0f127827ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeamWeapon
+  targeter: {fileID: 1653389506}
+  damage: 14
+  cooldown: 1.2
+  muzzle: {fileID: 718965398}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 640
+  beam: {fileID: 1957469684}
+  beamDuration: 0.08
+--- !u!114 &1653389511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647ae7c2afbdb6945b4f147bf465f04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AuraWeapon
+  targeter: {fileID: 1653389506}
+  damage: 6
+  cooldown: 0.5
+  radius: 3
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512
+  visual: {fileID: 750758539}
+--- !u!114 &1653389512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c26c4d587e9deb429b0ad42486807db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  targeter: {fileID: 1653389506}
+  damage: 10
+  cooldown: 0.6
+  projectilePrefab: {fileID: 8754365920117698162, guid: eb6e9142e0161154fb69b6f89f3ff48b, type: 3}
+  muzzle: {fileID: 718965398}
+  projectileSpeed: 18
 --- !u!1 &1658393533
 GameObject:
   m_ObjectHideFlags: 0
@@ -5651,6 +5764,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e6d041b277815e4caf02fc528cd4a04, type: 3}
+--- !u!114 &562246702475253046 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5153688514611378, guid: 2e6d041b277815e4caf02fc528cd4a04, type: 3}
+  m_PrefabInstance: {fileID: 562246702475253045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
