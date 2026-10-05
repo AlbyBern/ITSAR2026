@@ -11,7 +11,7 @@ public class ProjectileWeapon : Weapon
         Vector3 origin = muzzle != null ? muzzle.position : transform.position + Vector3.up;
         Vector3 direction = (targeter.TargetPoint - origin).normalized;
 
-        Projectile projectile = Instantiate(projectilePrefab, origin, Quaternion.LookRotation(direction));
+        Projectile projectile = Pool.Spawn(projectilePrefab, origin, Quaternion.LookRotation(direction));
         projectile.Launch(direction * data.ProjectileSpeed, Damage);
     }
 }

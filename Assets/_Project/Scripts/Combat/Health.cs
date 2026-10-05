@@ -5,7 +5,7 @@ using UnityEngine;
 /// Punti vita riutilizzabili da player, nemici e strutture.
 /// Health gestisce solo la vita e notifica i cambiamenti: non sa chi lo colpisce né chi lo ascolta.
 /// </summary>
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IPoolable
 {
     [SerializeField] private float maxHealth = 100f;
     [SerializeField, Tooltip("Distrugge il GameObject quando la vita arriva a zero")]
@@ -62,6 +62,15 @@ public class Health : MonoBehaviour
         Current = Mathf.Min(maxHealth, Current + amount);
         HealthChanged?.Invoke(Current, maxHealth);
     }
+
+    // Pooling: un nemico riciclato torna in vita con la vita piena
+    public void OnSpawned()
+    {
+        Current = maxHealth;
+        HealthChanged?.Invoke(Current, maxHealth);
+    }
+
+    public void OnDespawned() { }
 
     private void Die()
     {

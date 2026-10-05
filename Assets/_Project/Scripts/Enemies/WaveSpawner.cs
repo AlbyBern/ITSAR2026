@@ -12,6 +12,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField, Tooltip("Bersaglio dei nemici (il cristallo)")] private Transform target;
     [SerializeField] private List<WaveData> waves = new List<WaveData>();
+    [SerializeField, Tooltip("Nemici creati in anticipo nel pool")] private int prewarmCount = 60;
 
     private readonly List<Enemy> alive = new List<Enemy>();
     private WaveData current;
@@ -26,6 +27,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
+        Pool.Prewarm(enemyPrefab.gameObject, prewarmCount);
         StartWave(0);
     }
 
@@ -43,7 +45,7 @@ public class WaveSpawner : MonoBehaviour
         if (spawnTimer > 0f) return;
         spawnTimer = current.SpawnInterval;
 
-        alive.RemoveAll(enemy => enemy == null);
+        RemoveInactive();
         if (alive.Count >= current.MaxAlive) return;
 
         Spawn(current.PickEnemy());
@@ -62,8 +64,18 @@ public class WaveSpawner : MonoBehaviour
         if (data == null) return;
 
         Transform point = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-        Enemy enemy = Instantiate(enemyPrefab, point.position, Quaternion.identity);
+        Enemy enemy = Pool.Spawn(enemyPrefab, point.position, Quaternion.identity);
         enemy.Init(data, target);
         alive.Add(enemy);
+    }
+
+    // I nemici morti non vengono distrutti ma disattivati (tornano nel pool).
+    // Ciclo all'indietro invece di RemoveAll con una lambda: nessuna allocazione a ogni spawn.
+    private void RemoveInactive()
+    {
+        for (int i = alive.Count - 1; i >= 0; i--)
+        {
+            if (!alive[i].gameObject.activeInHierarchy) alive.RemoveAt(i);
+        }
     }
 }

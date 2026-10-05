@@ -9,14 +9,16 @@ public class AuraWeapon : Weapon
     [SerializeField] private LayerMask enemyMask;
     [SerializeField, Tooltip("Disco che mostra il raggio")] private Transform visual;
 
+    private readonly Collider[] hitBuffer = new Collider[128];
+
     protected override bool NeedsTarget => false;
 
     protected override void Fire()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, data.Radius, enemyMask, QueryTriggerInteraction.Collide);
-        foreach (Collider hit in hits)
+        int count = Physics.OverlapSphereNonAlloc(transform.position, data.Radius, hitBuffer, enemyMask, QueryTriggerInteraction.Collide);
+        for (int i = 0; i < count; i++)
         {
-            Health health = hit.GetComponentInParent<Health>();
+            Health health = hitBuffer[i].GetComponentInParent<Health>();
             if (health != null && !health.IsDead)
             {
                 health.TakeDamage(Damage);

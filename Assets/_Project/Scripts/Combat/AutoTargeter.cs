@@ -15,6 +15,9 @@ public class AutoTargeter : MonoBehaviour
 
     private float nextScanTime;
 
+    // Buffer riutilizzato: OverlapSphereNonAlloc non crea un nuovo array a ogni ricerca
+    private readonly Collider[] hitBuffer = new Collider[64];
+
     public Health CurrentTarget { get; private set; }
 
     /// <summary>Punto da mirare: il centro del bersaglio, a metà altezza.</summary>
@@ -42,13 +45,14 @@ public class AutoTargeter : MonoBehaviour
     private Health FindNearest()
     {
         Vector3 eye = transform.position + Vector3.up * eyeHeight;
-        Collider[] hits = Physics.OverlapSphere(transform.position, range, targetMask, QueryTriggerInteraction.Collide);
+        int count = Physics.OverlapSphereNonAlloc(transform.position, range, hitBuffer, targetMask, QueryTriggerInteraction.Collide);
 
         Health best = null;
         float bestSqrDistance = float.MaxValue;
 
-        foreach (Collider hit in hits)
+        for (int i = 0; i < count; i++)
         {
+            Collider hit = hitBuffer[i];
             Health health = hit.GetComponentInParent<Health>();
             if (health == null || health.IsDead) continue;
 

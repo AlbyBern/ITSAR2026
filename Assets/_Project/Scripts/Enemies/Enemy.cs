@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Configura un nemico a partire da un EnemyData: un solo prefab, tanti tipi di nemico.
 /// Il colore si cambia con un MaterialPropertyBlock, senza creare un materiale per ogni nemico.
+/// Alla morte il nemico torna nel pool.
 /// </summary>
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
@@ -27,6 +28,11 @@ public class Enemy : MonoBehaviour
         drop = GetComponent<DropOnDeath>();
         propertyBlock = new MaterialPropertyBlock();
     }
+
+    private void OnEnable() => health.Died += OnDied;
+    private void OnDisable() => health.Died -= OnDied;
+
+    private void OnDied() => Pool.Despawn(gameObject);
 
     /// <summary>Applica i dati del tipo di nemico. Da chiamare subito dopo la creazione.</summary>
     public void Init(EnemyData data, Transform target)

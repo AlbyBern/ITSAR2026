@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// [Fornito dal docente] Quando l'Health di questo oggetto muore, lascia cadere un oggetto (una gemma).
+/// Quando l'Health di questo oggetto muore, lascia cadere un oggetto (una gemma).
 /// È un esempio di Observer: si iscrive all'evento Died senza che Health sappia della sua esistenza.
 /// </summary>
 [RequireComponent(typeof(Health))]
@@ -26,7 +26,7 @@ public class DropOnDeath : MonoBehaviour
     {
         if (dropPrefab != null && Random.value <= chance)
         {
-            Instantiate(dropPrefab, transform.position, Quaternion.identity);
+            Pool.Spawn(dropPrefab, transform.position, Quaternion.identity);
         }
     }
 }
