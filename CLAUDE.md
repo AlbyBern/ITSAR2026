@@ -8,7 +8,8 @@ aggiunge un sistema**: un contesto vecchio porta l'AI a inventare.
 
 **Crystal Survivors**: action tower defense con visuale dall'alto e attacco automatico, in stile
 Vampire Survivors. Il giocatore si muove in un'arena 40 × 40, le armi colpiscono da sole il
-nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
+nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici. Le gemme dei nemici
+danno esperienza (livelli e potenziamenti) e servono a costruire torri.
 
 ## Tecnologia
 
@@ -26,11 +27,11 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 - Campi `private` con `[SerializeField]`; proprietà in sola lettura per esporre i valori
 - Riferimenti recuperati in `Awake`; mai `GetComponent`/`Find` in `Update`
 - Iscrizione agli eventi in `OnEnable`, disiscrizione in `OnDisable`
-- Dati di bilanciamento negli ScriptableObject (`Data/`), stato runtime nei componenti
-- Pausa solo tramite `PauseService.Request/Release`
 - **Mai** `Instantiate`/`Destroy` per oggetti frequenti: si usa `Pool.Spawn` / `Pool.Despawn`,
   e gli oggetti riciclati implementano `IPoolable` per azzerare lo stato
 - Query fisiche senza allocazioni (`OverlapSphereNonAlloc` con buffer)
+- Dati di bilanciamento negli ScriptableObject (`Data/`), stato runtime nei componenti
+- Pausa solo tramite `PauseService.Request/Release`, cambi di scena solo tramite `SceneChanger`
 - Commenti in italiano, nomi in inglese
 
 ## Layer e fisica
@@ -42,18 +43,18 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 
 | Sistema | Classi principali |
 |---|---|
-| Player | `PlayerController`, `CameraFollow`, `PlayerStats`, `PlayerExperience`, `GemCollector`, `TowerPlacer` |
+| Player | `PlayerController` (CharacterController), `PlayerStats`, `PlayerExperience`, `GemCollector`, `TowerPlacer` |
 | Vita | `Health` (eventi `HealthChanged`, `Died`), `AreaEffect` |
 | Armi | `Weapon` (astratta) → `ProjectileWeapon`, `AuraWeapon`, `BeamWeapon`; `AutoTargeter`; `Projectile` |
-| Nemici | `Enemy`, `EnemyAI` + stati `SeekState`, `ChaseState`, `AttackState`, `DeadState`; `WaveSpawner`; `DropOnDeath` |
+| Nemici | `Enemy` (evento statico `Killed`), `EnemyAI` + stati `SeekState`, `ChaseState`, `AttackState`, `DeadState`; `WaveSpawner`; `DropOnDeath` |
 | Dati | `WeaponData`, `EnemyData`, `WaveData`, `UpgradeData` (astratta) → `StatUpgrade`, `WeaponUnlockUpgrade` |
 | Pooling | `Pool` (statica), `PooledObject`, `IPoolable` |
-| Servizi | `PauseService` (pausa condivisa) |
-| UI | `HealthBarUI`, `GemCounterUI`, `ExperienceBarUI`, `WaveUI`, `LevelUpUI`, `PauseMenu`, `PerformanceOverlay` |
+| Scene e partita | `SceneChanger` (Singleton persistente), `GameManager`, `RunResults`, `PauseService` |
+| UI | `HealthBarUI`, `GemCounterUI`, `ExperienceBarUI`, `WaveUI`, `LevelUpUI`, `PauseMenu`, `MainMenu`, `GameOverScreen` |
 
 ## Scene
 
-`Arena` (gioco), `Arena_Stress` (misure di performance), `Sandbox_Lifecycle` (esercizi).
+`MainMenu` → `Arena` → `GameOver` (Build Profiles, indici 0-2). `Arena_Stress` per le misure di performance.
 
 ## Comandi verso Unity
 
