@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// Configura un nemico a partire da un EnemyData: un solo prefab, tanti tipi di nemico.
 /// Il colore si cambia con un MaterialPropertyBlock, senza creare un materiale per ogni nemico.
-/// Alla morte il nemico torna nel pool.
+/// Il comportamento è affidato alla macchina a stati (EnemyAI).
 /// </summary>
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Health), typeof(EnemyAI))]
 public class Enemy : MonoBehaviour
 {
     private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
@@ -13,8 +13,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Renderer bodyRenderer;
 
     private Health health;
-    private SimpleChaser chaser;
-    private ContactDamage contactDamage;
+    private EnemyAI ai;
     private DropOnDeath drop;
     private MaterialPropertyBlock propertyBlock;
 
@@ -23,29 +22,22 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
-        chaser = GetComponent<SimpleChaser>();
-        contactDamage = GetComponent<ContactDamage>();
+        ai = GetComponent<EnemyAI>();
         drop = GetComponent<DropOnDeath>();
         propertyBlock = new MaterialPropertyBlock();
     }
 
-    private void OnEnable() => health.Died += OnDied;
-    private void OnDisable() => health.Died -= OnDied;
-
-    private void OnDied() => Pool.Despawn(gameObject);
-
-    /// <summary>Applica i dati del tipo di nemico. Da chiamare subito dopo la creazione.</summary>
-    public void Init(EnemyData data, Transform target)
+    /// <summary>Applica i dati del tipo di nemico. Da chiamare subito dopo lo spawn.</summary>
+    public void Init(EnemyData data, Health crystal, Health player)
     {
         Data = data;
         health.SetMax(data.MaxHealth);
-        chaser.SetTarget(target);
-        chaser.Speed = data.MoveSpeed;
-        contactDamage.DamagePerSecond = data.ContactDamagePerSecond;
         drop.Chance = data.GemDropChance;
         transform.localScale = Vector3.one * data.Scale;
 
         propertyBlock.SetColor(BaseColorId, data.Color);
         bodyRenderer.SetPropertyBlock(propertyBlock);
+
+        ai.Setup(data, crystal, player);
     }
 }

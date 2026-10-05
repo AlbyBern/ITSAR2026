@@ -7003,7 +7003,8 @@ MonoBehaviour:
   - {fileID: 1081968391}
   - {fileID: 193771926}
   - {fileID: 382555913}
-  target: {fileID: 1071539329}
+  crystal: {fileID: 562246702475253046}
+  player: {fileID: 1653389508}
   waves:
   - {fileID: 11400000, guid: 256515d9e20af3140bda4ffaf9d9124a, type: 2}
   - {fileID: 11400000, guid: 99ee78c2df30e4a43b2b557813ae546c, type: 2}

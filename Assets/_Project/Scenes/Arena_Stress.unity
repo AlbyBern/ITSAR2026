@@ -7351,7 +7351,8 @@ MonoBehaviour:
   - {fileID: 1081968391}
   - {fileID: 193771926}
   - {fileID: 382555913}
-  target: {fileID: 1071539329}
+  crystal: {fileID: 562246702475253046}
+  player: {fileID: 1653389508}
   waves:
   - {fileID: 11400000, guid: 7cc4765779ee3b24c905e46a4915d172, type: 2}
   prewarmCount: 60

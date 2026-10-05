@@ -279,6 +279,8 @@ GameObject:
   - component: {fileID: 1783051137040238960}
   - component: {fileID: 3648951455235211598}
   - component: {fileID: 6026012525651816749}
+  - component: {fileID: 4747598791905218912}
+  - component: {fileID: 5053167566466398047}
   m_Layer: 12
   m_Name: Tower
   m_TagString: Untagged
@@ -363,6 +365,36 @@ MonoBehaviour:
   targeter: {fileID: 3648951455235211598}
   projectilePrefab: {fileID: 8754365920117698162, guid: eb6e9142e0161154fb69b6f89f3ff48b, type: 3}
   muzzle: {fileID: 8427798584823366967}
+--- !u!114 &4747598791905218912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307234257774955515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 150
+  destroyOnDeath: 1
+--- !u!208 &5053167566466398047
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307234257774955515}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.6, y: 1.5, z: 0.6}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8683427484637939733
 GameObject:
   m_ObjectHideFlags: 0

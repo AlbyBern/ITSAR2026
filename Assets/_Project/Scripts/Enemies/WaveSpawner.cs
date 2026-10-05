@@ -10,7 +10,8 @@ public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField, Tooltip("Bersaglio dei nemici (il cristallo)")] private Transform target;
+    [SerializeField, Tooltip("Il cristallo da difendere")] private Health crystal;
+    [SerializeField] private Health player;
     [SerializeField] private List<WaveData> waves = new List<WaveData>();
     [SerializeField, Tooltip("Nemici creati in anticipo nel pool")] private int prewarmCount = 60;
 
@@ -65,7 +66,7 @@ public class WaveSpawner : MonoBehaviour
 
         Transform point = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         Enemy enemy = Pool.Spawn(enemyPrefab, point.position, Quaternion.identity);
-        enemy.Init(data, target);
+        enemy.Init(data, crystal, player);
         alive.Add(enemy);
     }
 

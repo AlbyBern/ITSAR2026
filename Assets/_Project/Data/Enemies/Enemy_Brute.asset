@@ -19,3 +19,7 @@ MonoBehaviour:
   gemDropChance: 1
   color: {r: 0.5, g: 0.1, b: 0.2, a: 1}
   scale: 1.5
+  priority: 2
+  aggroRange: 3
+  attackRange: 1.2
+  attackInterval: 1.2
