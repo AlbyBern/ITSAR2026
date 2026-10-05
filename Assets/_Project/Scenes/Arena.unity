@@ -837,7 +837,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 96
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3183,6 +3183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1653389502}
   - component: {fileID: 1653389503}
+  - component: {fileID: 1653389504}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3232,6 +3233,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1653389504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9208559aa6bd65843ba6bfb24bcd5419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveSpeed: 6
+  sprintMultiplier: 1.6
+  rotationSpeed: 720
+  gravity: -20
+  cameraTransform: {fileID: 1658393536}
 --- !u!1 &1658393533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,6 +3261,7 @@ GameObject:
   - component: {fileID: 1658393536}
   - component: {fileID: 1658393535}
   - component: {fileID: 1658393534}
+  - component: {fileID: 1658393537}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3324,6 +3343,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658393537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658393533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35f5fd4691a8e547946792fdca3acd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  target: {fileID: 1653389502}
+  offset: {x: 0, y: 16, z: -11}
+  smoothTime: 0.15
 --- !u!1 &1724482529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3516,6 +3550,7 @@ GameObject:
   - component: {fileID: 2103565039}
   - component: {fileID: 2103565038}
   - component: {fileID: 2103565037}
+  - component: {fileID: 2103565041}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -3606,6 +3641,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2103565041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103565036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e32a35922203a4d9afa87287a44eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  pausePanel: {fileID: 1631559957}
+  resumeButton: {fileID: 786979319}
 --- !u!1001 &562246702475253045
 PrefabInstance:
   m_ObjectHideFlags: 0
