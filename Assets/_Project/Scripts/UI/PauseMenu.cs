@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Button resumeButton;
+    [SerializeField] private Button menuButton;
+    [SerializeField] private string menuScene = "MainMenu";
 
     private GameControls controls;
 
@@ -25,6 +27,7 @@ public class PauseMenu : MonoBehaviour
         controls.Player.Pause.performed += OnPausePerformed;
         controls.Player.Pause.Enable();
         resumeButton.onClick.AddListener(Resume);
+        menuButton.onClick.AddListener(BackToMenu);
     }
 
     private void OnDisable()
@@ -32,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         controls.Player.Pause.performed -= OnPausePerformed;
         controls.Player.Pause.Disable();
         resumeButton.onClick.RemoveListener(Resume);
+        menuButton.onClick.RemoveListener(BackToMenu);
         PauseService.Release(this);
     }
 
@@ -42,6 +46,8 @@ public class PauseMenu : MonoBehaviour
     private void OnPausePerformed(InputAction.CallbackContext context) => SetOpen(!IsOpen);
 
     public void Resume() => SetOpen(false);
+
+    private void BackToMenu() => SceneChanger.Instance.LoadScene(menuScene);
 
     private void SetOpen(bool open)
     {

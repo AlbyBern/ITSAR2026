@@ -182,7 +182,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 110
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 230098393}
   - component: {fileID: 230098392}
   - component: {fileID: 230098391}
+  - component: {fileID: 230098395}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -303,6 +304,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &230098395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230098390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d886db4d82dc05d4880498550b2ce1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  playButton: {fileID: 1906951876}
+  quitButton: {fileID: 2023006953}
+  gameScene: Arena
 --- !u!1 &565244429
 GameObject:
   m_ObjectHideFlags: 0

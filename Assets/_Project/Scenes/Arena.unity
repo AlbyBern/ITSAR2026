@@ -5689,6 +5689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1581011511}
+  - component: {fileID: 1581011512}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5711,6 +5712,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 35066081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581011512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581011510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d69f38c5ff788b44bb57ffa62c2ea05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 1653389508}
+  crystal: {fileID: 562246702475253046}
+  experience: {fileID: 1653389513}
+  waves: {fileID: 2048578042}
+  gameOverScene: GameOver
+  delay: 1.5
 --- !u!1 &1626467439
 GameObject:
   m_ObjectHideFlags: 0
@@ -7616,6 +7635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pausePanel: {fileID: 1631559957}
   resumeButton: {fileID: 786979319}
+  menuButton: {fileID: 565244431}
+  menuScene: MainMenu
 --- !u!114 &2103565042
 MonoBehaviour:
   m_ObjectHideFlags: 0

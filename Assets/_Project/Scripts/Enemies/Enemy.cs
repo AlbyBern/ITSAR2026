@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -19,6 +20,12 @@ public class Enemy : MonoBehaviour
 
     public EnemyData Data { get; private set; }
 
+    /// <summary>
+    /// Evento statico: chiunque può sapere quando muore un nemico qualsiasi, senza conoscerli tutti.
+    /// Attenzione: chi si iscrive a un evento statico DEVE disiscriversi.
+    /// </summary>
+    public static event Action<Enemy> Killed;
+
     private void Awake()
     {
         health = GetComponent<Health>();
@@ -26,6 +33,11 @@ public class Enemy : MonoBehaviour
         drop = GetComponent<DropOnDeath>();
         propertyBlock = new MaterialPropertyBlock();
     }
+
+    private void OnEnable() => health.Died += OnDied;
+    private void OnDisable() => health.Died -= OnDied;
+
+    private void OnDied() => Killed?.Invoke(this);
 
     /// <summary>Applica i dati del tipo di nemico. Da chiamare subito dopo lo spawn.</summary>
     public void Init(EnemyData data, Health crystal, Health player)

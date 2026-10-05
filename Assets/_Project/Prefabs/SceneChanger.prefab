@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 4178906661671481245}
   - component: {fileID: 8971468793056502885}
   - component: {fileID: 5853887502514384854}
+  - component: {fileID: 8513456211925112471}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -422,3 +423,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8513456211925112471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603936689143391728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b034ae4d450f3442a725d05e52e569d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
+  fade: {fileID: 5103180561403008}
+  progressFill: {fileID: 4994589867567424026}
+  fadeDuration: 0.3
