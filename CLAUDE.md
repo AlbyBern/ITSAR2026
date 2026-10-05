@@ -25,6 +25,8 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 - Campi `private` con `[SerializeField]`; proprietà in sola lettura per esporre i valori
 - Riferimenti recuperati in `Awake`; mai `GetComponent`/`Find` in `Update`
 - Iscrizione agli eventi in `OnEnable`, disiscrizione in `OnDisable`
+- Dati di bilanciamento negli ScriptableObject (`Data/`), stato runtime nei componenti
+- Pausa solo tramite `PauseService.Request/Release`
 - Commenti in italiano, nomi in inglese
 
 ## Layer e fisica
@@ -36,11 +38,13 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 
 | Sistema | Classi principali |
 |---|---|
-| Player | `PlayerController` (CharacterController), `CameraFollow`, `GemCollector` |
-| Vita | `Health` (eventi `HealthChanged`, `Died`), `AreaEffect` (zone trigger) |
-| Combattimento | `AutoTargeter` (OverlapSphere + Linecast), `SimpleShooter`, `Projectile` (Rigidbody cinematico) |
-| Nemici (forniti) | `SimpleChaser`, `ContactDamage`, `EnemySpawner`, `DropOnDeath` |
-| UI | `PauseMenu` |
+| Player | `PlayerController`, `CameraFollow`, `PlayerStats`, `PlayerExperience`, `GemCollector`, `TowerPlacer` |
+| Vita | `Health` (eventi `HealthChanged`, `Died`), `AreaEffect` |
+| Armi | `Weapon` (astratta) → `ProjectileWeapon`, `AuraWeapon`, `BeamWeapon`; `AutoTargeter`; `Projectile` |
+| Nemici | `Enemy` (applica `EnemyData`), `WaveSpawner`, `SimpleChaser`, `ContactDamage`, `DropOnDeath` |
+| Dati | `WeaponData`, `EnemyData`, `WaveData`, `UpgradeData` (astratta) → `StatUpgrade`, `WeaponUnlockUpgrade` |
+| Servizi | `PauseService` (pausa condivisa) |
+| UI | `HealthBarUI`, `GemCounterUI`, `ExperienceBarUI`, `WaveUI`, `LevelUpUI`, `PauseMenu`, `PerformanceOverlay` |
 
 ## Scene
 

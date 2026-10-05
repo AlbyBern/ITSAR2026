@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Arena.unity
     guid: f99dd1f2e1f406d4ebeb53ec63aa5e11
+  - enabled: 1
+    path: Assets/_Project/Scenes/Arena_Stress.unity
+    guid: 55905b7420e91c143a295e84de6b5e32
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
