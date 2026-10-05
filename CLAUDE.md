@@ -16,6 +16,7 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 - **Input System** (*Active Input Handling = Input System Package*): `UnityEngine.Input` NON funziona.
   Asset `Input/GameControls.inputactions`, classe generata `GameControls`, Action Map `Player`:
   `Move` (Vector2), `Sprint`, `PlaceTower`, `Pause` (Button)
+- **AI Navigation**: `NavMeshSurface` su `Environment`, nemici con `NavMeshAgent`
 - UI: uGUI con `UnityEngine.UI.Text` (non TextMeshPro)
 - API di Unity 6: `Rigidbody.linearVelocity` (non `velocity`), `FindFirstObjectByType` (non `FindObjectOfType`)
 
@@ -27,6 +28,9 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 - Iscrizione agli eventi in `OnEnable`, disiscrizione in `OnDisable`
 - Dati di bilanciamento negli ScriptableObject (`Data/`), stato runtime nei componenti
 - Pausa solo tramite `PauseService.Request/Release`
+- **Mai** `Instantiate`/`Destroy` per oggetti frequenti: si usa `Pool.Spawn` / `Pool.Despawn`,
+  e gli oggetti riciclati implementano `IPoolable` per azzerare lo stato
+- Query fisiche senza allocazioni (`OverlapSphereNonAlloc` con buffer)
 - Commenti in italiano, nomi in inglese
 
 ## Layer e fisica
@@ -41,14 +45,15 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 | Player | `PlayerController`, `CameraFollow`, `PlayerStats`, `PlayerExperience`, `GemCollector`, `TowerPlacer` |
 | Vita | `Health` (eventi `HealthChanged`, `Died`), `AreaEffect` |
 | Armi | `Weapon` (astratta) → `ProjectileWeapon`, `AuraWeapon`, `BeamWeapon`; `AutoTargeter`; `Projectile` |
-| Nemici | `Enemy` (applica `EnemyData`), `WaveSpawner`, `SimpleChaser`, `ContactDamage`, `DropOnDeath` |
+| Nemici | `Enemy`, `EnemyAI` + stati `SeekState`, `ChaseState`, `AttackState`, `DeadState`; `WaveSpawner`; `DropOnDeath` |
 | Dati | `WeaponData`, `EnemyData`, `WaveData`, `UpgradeData` (astratta) → `StatUpgrade`, `WeaponUnlockUpgrade` |
+| Pooling | `Pool` (statica), `PooledObject`, `IPoolable` |
 | Servizi | `PauseService` (pausa condivisa) |
 | UI | `HealthBarUI`, `GemCounterUI`, `ExperienceBarUI`, `WaveUI`, `LevelUpUI`, `PauseMenu`, `PerformanceOverlay` |
 
 ## Scene
 
-`Arena` (gioco), `Sandbox_Lifecycle` (esercizi).
+`Arena` (gioco), `Arena_Stress` (misure di performance), `Sandbox_Lifecycle` (esercizi).
 
 ## Comandi verso Unity
 
