@@ -750,6 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173979728}
   - component: {fileID: 173979729}
+  - component: {fileID: 173979730}
   m_Layer: 9
   m_Name: Dummy_5
   m_TagString: Untagged
@@ -796,6 +797,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &173979730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173979727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 40
+  destroyOnDeath: 1
 --- !u!1 &193771925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429797708}
   - component: {fileID: 429797709}
+  - component: {fileID: 429797710}
   m_Layer: 0
   m_Name: HealingSpring
   m_TagString: Untagged
@@ -1282,6 +1298,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 2, z: 3}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &429797710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429797707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49e019791fecbd449e89ceeb9ecd430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaEffect
+  effect: 1
+  amountPerSecond: 15
 --- !u!1 &440117087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,6 +1690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542730853}
   - component: {fileID: 542730854}
+  - component: {fileID: 542730855}
   m_Layer: 9
   m_Name: Dummy_1
   m_TagString: Untagged
@@ -1706,6 +1737,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &542730855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542730852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 40
+  destroyOnDeath: 1
 --- !u!1001 &566814590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2111,6 +2156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 704411425}
   - component: {fileID: 704411426}
+  - component: {fileID: 704411427}
   m_Layer: 9
   m_Name: Dummy_3
   m_TagString: Untagged
@@ -2157,6 +2203,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &704411427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704411424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 40
+  destroyOnDeath: 1
 --- !u!1 &718965397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,6 +2258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727298914}
   - component: {fileID: 727298915}
+  - component: {fileID: 727298916}
   m_Layer: 0
   m_Name: LavaPool
   m_TagString: Untagged
@@ -2242,6 +2303,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 2, z: 3}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &727298916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727298913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49e019791fecbd449e89ceeb9ecd430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaEffect
+  effect: 0
+  amountPerSecond: 25
 --- !u!1001 &759398711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3525,6 +3600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164777578}
   - component: {fileID: 1164777579}
+  - component: {fileID: 1164777580}
   m_Layer: 9
   m_Name: Dummy_2
   m_TagString: Untagged
@@ -3571,6 +3647,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1164777580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164777577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 40
+  destroyOnDeath: 1
 --- !u!1 &1224916595
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,6 +4260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1626325624}
   - component: {fileID: 1626325625}
+  - component: {fileID: 1626325626}
   m_Layer: 9
   m_Name: Dummy_4
   m_TagString: Untagged
@@ -4216,6 +4307,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1626325626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626325623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 40
+  destroyOnDeath: 1
 --- !u!1 &1626467439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4415,6 +4520,10 @@ GameObject:
   - component: {fileID: 1653389502}
   - component: {fileID: 1653389503}
   - component: {fileID: 1653389504}
+  - component: {fileID: 1653389508}
+  - component: {fileID: 1653389507}
+  - component: {fileID: 1653389506}
+  - component: {fileID: 1653389505}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4482,6 +4591,71 @@ MonoBehaviour:
   rotationSpeed: 720
   gravity: -20
   cameraTransform: {fileID: 1658393536}
+--- !u!114 &1653389505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783271ca100346b4fbc4d8958abb3ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleShooter
+  targeter: {fileID: 1653389506}
+  projectilePrefab: {fileID: 8754365920117698162, guid: eb6e9142e0161154fb69b6f89f3ff48b, type: 3}
+  muzzle: {fileID: 718965398}
+  fireInterval: 0.6
+  damage: 10
+  projectileSpeed: 18
+--- !u!114 &1653389506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652a66f278fb284478016dbd732454b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoTargeter
+  range: 10
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  scanInterval: 0.2
+  eyeHeight: 1
+--- !u!114 &1653389507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4baee29c7f850943b9ae041656bc656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GemCollector
+--- !u!114 &1653389508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97f67d177003f45a12d0e5c63e8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  destroyOnDeath: 0
 --- !u!1 &1658393533
 GameObject:
   m_ObjectHideFlags: 0
