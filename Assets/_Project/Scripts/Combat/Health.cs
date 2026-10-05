@@ -26,6 +26,22 @@ public class Health : MonoBehaviour
         Current = maxHealth;
     }
 
+    /// <summary>Imposta la vita massima e riempie la vita (usato quando un nemico riceve i suoi dati).</summary>
+    public void SetMax(float max)
+    {
+        maxHealth = Mathf.Max(1f, max);
+        Current = maxHealth;
+        HealthChanged?.Invoke(Current, maxHealth);
+    }
+
+    /// <summary>Aumenta la vita massima e cura della stessa quantità (potenziamento).</summary>
+    public void IncreaseMax(float amount)
+    {
+        maxHealth += amount;
+        Current += amount;
+        HealthChanged?.Invoke(Current, maxHealth);
+    }
+
     public void TakeDamage(float amount)
     {
         if (IsDead || amount <= 0f) return;

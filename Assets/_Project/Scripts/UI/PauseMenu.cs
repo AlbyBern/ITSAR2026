@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Mette in pausa il gioco con l'action Pause (Esc / Start) e mostra il pannello di pausa.
+/// La pausa passa da PauseService, condiviso con la schermata dei potenziamenti.
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     private GameControls controls;
 
-    public bool IsPaused { get; private set; }
+    public bool IsOpen { get; private set; }
 
     private void Awake()
     {
@@ -21,7 +22,6 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        // Iscrizione all'evento dell'action e al click del bottone...
         controls.Player.Pause.performed += OnPausePerformed;
         controls.Player.Pause.Enable();
         resumeButton.onClick.AddListener(Resume);
@@ -29,26 +29,26 @@ public class PauseMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        // ...e disiscrizione simmetrica, per non lasciare riferimenti appesi.
         controls.Player.Pause.performed -= OnPausePerformed;
         controls.Player.Pause.Disable();
         resumeButton.onClick.RemoveListener(Resume);
+        PauseService.Release(this);
     }
 
     private void OnDestroy() => controls.Dispose();
 
-    private void Start() => SetPaused(false);
+    private void Start() => SetOpen(false);
 
-    private void OnPausePerformed(InputAction.CallbackContext context) => SetPaused(!IsPaused);
+    private void OnPausePerformed(InputAction.CallbackContext context) => SetOpen(!IsOpen);
 
-    public void Resume() => SetPaused(false);
+    public void Resume() => SetOpen(false);
 
-    private void SetPaused(bool paused)
+    private void SetOpen(bool open)
     {
-        IsPaused = paused;
-        pausePanel.SetActive(paused);
+        IsOpen = open;
+        pausePanel.SetActive(open);
 
-        // timeScale = 0 ferma tutto ciò che usa Time.deltaTime (movimento, fisica, timer).
-        Time.timeScale = paused ? 0f : 1f;
+        if (open) PauseService.Request(this);
+        else PauseService.Release(this);
     }
 }

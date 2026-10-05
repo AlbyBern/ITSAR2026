@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("Se vuoto usa la Main Camera")] private Transform cameraTransform;
 
     private CharacterController controller;
+    private PlayerStats stats;
     private GameControls controls;
     private float verticalVelocity;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        stats = GetComponent<PlayerStats>();
         controls = new GameControls();
 
         if (cameraTransform == null && Camera.main != null)
@@ -41,7 +43,8 @@ public class PlayerController : MonoBehaviour
         Vector2 input = controls.Player.Move.ReadValue<Vector2>();
         Vector3 direction = CameraRelative(input);
 
-        float speed = moveSpeed;
+        // Il moltiplicatore arriva dai potenziamenti (stato runtime in PlayerStats)
+        float speed = moveSpeed * (stats != null ? stats.MoveSpeedMultiplier : 1f);
         if (controls.Player.Sprint.IsPressed())
         {
             speed *= sprintMultiplier;

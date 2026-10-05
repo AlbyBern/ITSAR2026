@@ -4563,6 +4563,8 @@ GameObject:
   - component: {fileID: 1269237391}
   - component: {fileID: 1269237390}
   - component: {fileID: 1269237389}
+  - component: {fileID: 1269237393}
+  - component: {fileID: 1269237392}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -4641,6 +4643,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
   target: {fileID: 1653389508}
   fill: {fileID: 1658485463}
+--- !u!114 &1269237392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269237387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ece77f9ef2b9341be31d58162c3d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveUI
+  spawner: {fileID: 2048578042}
+  label: {fileID: 2016330906}
+--- !u!114 &1269237393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269237387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd09a10581d35284fa518708557e75c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExperienceBarUI
+  experience: {fileID: 1653389513}
+  fill: {fileID: 1788631337}
+  levelLabel: {fileID: 2095167860}
 --- !u!1 &1284475479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5304,7 +5335,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5526,6 +5557,8 @@ GameObject:
   - component: {fileID: 1653389511}
   - component: {fileID: 1653389510}
   - component: {fileID: 1653389509}
+  - component: {fileID: 1653389514}
+  - component: {fileID: 1653389513}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5672,14 +5705,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653389501}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3384e804fb97f274c9bfd0f127827ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeamWeapon
+  data: {fileID: 11400000, guid: f52088cde0eb90b4dbdf898d597c3654, type: 2}
   targeter: {fileID: 1653389506}
-  damage: 14
-  cooldown: 1.2
   muzzle: {fileID: 718965398}
   hitMask:
     serializedVersion: 2
@@ -5693,15 +5725,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653389501}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 647ae7c2afbdb6945b4f147bf465f04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AuraWeapon
+  data: {fileID: 11400000, guid: a35038b735bee744b83cd775098861a3, type: 2}
   targeter: {fileID: 1653389506}
-  damage: 6
-  cooldown: 0.5
-  radius: 3
   enemyMask:
     serializedVersion: 2
     m_Bits: 512
@@ -5718,12 +5748,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c26c4d587e9deb429b0ad42486807db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  data: {fileID: 11400000, guid: d3edb94290771ec41b267863fbb50dfe, type: 2}
   targeter: {fileID: 1653389506}
-  damage: 10
-  cooldown: 0.6
   projectilePrefab: {fileID: 8754365920117698162, guid: eb6e9142e0161154fb69b6f89f3ff48b, type: 3}
   muzzle: {fileID: 718965398}
-  projectileSpeed: 18
+--- !u!114 &1653389513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6898142f2c7cbd6418734205539a52d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerExperience
+  baseRequirement: 5
+  growthPerLevel: 4
+--- !u!114 &1653389514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653389501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200d3d12d7e9acf44a1fed78c87771e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
 --- !u!1 &1658393533
 GameObject:
   m_ObjectHideFlags: 0
@@ -6778,7 +6832,7 @@ GameObject:
   - component: {fileID: 2048578041}
   - component: {fileID: 2048578042}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: WaveSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6808,10 +6862,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2048578040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f5167381d760984980b195de2328150, type: 3}
+  m_Script: {fileID: 11500000, guid: 8849fc39f298a2d45b2fefb784c9f648, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: 5186154584837543621, guid: e86f434a3483d464e87f0d4109d62540, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::WaveSpawner
+  enemyPrefab: {fileID: 5877329077250221320, guid: e86f434a3483d464e87f0d4109d62540, type: 3}
   spawnPoints:
   - {fileID: 147840530}
   - {fileID: 1724482530}
@@ -6822,8 +6876,11 @@ MonoBehaviour:
   - {fileID: 193771926}
   - {fileID: 382555913}
   target: {fileID: 1071539329}
-  interval: 1.5
-  maxAlive: 25
+  waves:
+  - {fileID: 11400000, guid: 256515d9e20af3140bda4ffaf9d9124a, type: 2}
+  - {fileID: 11400000, guid: 99ee78c2df30e4a43b2b557813ae546c, type: 2}
+  - {fileID: 11400000, guid: ff31e75fdc41e824d8e93e0842644ac3, type: 2}
+  - {fileID: 11400000, guid: 640c693baecea8d4f92060c72665df5d, type: 2}
 --- !u!1 &2052023967
 GameObject:
   m_ObjectHideFlags: 0
@@ -6992,6 +7049,7 @@ GameObject:
   - component: {fileID: 2103565038}
   - component: {fileID: 2103565037}
   - component: {fileID: 2103565041}
+  - component: {fileID: 2103565042}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -7098,6 +7156,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pausePanel: {fileID: 1631559957}
   resumeButton: {fileID: 786979319}
+--- !u!114 &2103565042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103565036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ffc03d4c68b444ca524af97171520a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpUI
+  experience: {fileID: 1653389513}
+  panel: {fileID: 1284475479}
+  optionButtons:
+  - {fileID: 495268366}
+  - {fileID: 1285239125}
+  - {fileID: 344294982}
+  upgrades:
+  - {fileID: 11400000, guid: 084990d53a47aa14b95b5b4cb2797f0e, type: 2}
+  - {fileID: 11400000, guid: b374abffb854d0d499eca23c9f354e10, type: 2}
+  - {fileID: 11400000, guid: 291d208fc2658eb4a9e536c06d5350ce, type: 2}
+  - {fileID: 11400000, guid: 8d4b0611dbf490e4996dd47f53619c51, type: 2}
+  - {fileID: 11400000, guid: df73e4b355129524db059f456d6d6ef9, type: 2}
+  - {fileID: 11400000, guid: f2bdcf1e9a99d5e4bbc18c4316f26b0b, type: 2}
 --- !u!1001 &562246702475253045
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,12 @@ public class DropOnDeath : MonoBehaviour
 
     private Health health;
 
+    public float Chance
+    {
+        get => chance;
+        set => chance = Mathf.Clamp01(value);
+    }
+
     private void Awake() => health = GetComponent<Health>();
     private void OnEnable() => health.Died += OnDied;
     private void OnDisable() => health.Died -= OnDied;

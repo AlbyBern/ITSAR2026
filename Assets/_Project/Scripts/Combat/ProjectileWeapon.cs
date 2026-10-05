@@ -1,11 +1,10 @@
 using UnityEngine;
 
-/// <summary>Spara un proiettile verso il bersaglio (ex SimpleShooter, ora parte della gerarchia Weapon).</summary>
+/// <summary>Spara un proiettile verso il bersaglio.</summary>
 public class ProjectileWeapon : Weapon
 {
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform muzzle;
-    [SerializeField] private float projectileSpeed = 18f;
 
     protected override void Fire()
     {
@@ -13,6 +12,6 @@ public class ProjectileWeapon : Weapon
         Vector3 direction = (targeter.TargetPoint - origin).normalized;
 
         Projectile projectile = Instantiate(projectilePrefab, origin, Quaternion.LookRotation(direction));
-        projectile.Launch(direction * projectileSpeed, damage);
+        projectile.Launch(direction * data.ProjectileSpeed, Damage);
     }
 }

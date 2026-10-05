@@ -30,6 +30,11 @@ public class BeamWeapon : Weapon
         }
     }
 
+    private void OnDisable()
+    {
+        if (beam != null) beam.enabled = false;
+    }
+
     protected override void Fire()
     {
         Vector3 origin = muzzle != null ? muzzle.position : transform.position + Vector3.up;
@@ -42,7 +47,7 @@ public class BeamWeapon : Weapon
             Health health = hit.collider.GetComponentInParent<Health>();
             if (health != null && !health.IsDead)
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(Damage);
             }
         }
 

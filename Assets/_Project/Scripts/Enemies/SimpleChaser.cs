@@ -16,6 +16,12 @@ public class SimpleChaser : MonoBehaviour
 
     public void SetTarget(Transform newTarget) => target = newTarget;
 
+    public float Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();

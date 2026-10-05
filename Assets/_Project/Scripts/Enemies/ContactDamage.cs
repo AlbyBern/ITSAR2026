@@ -11,6 +11,12 @@ public class ContactDamage : MonoBehaviour
 
     private readonly List<Health> touching = new List<Health>();
 
+    public float DamagePerSecond
+    {
+        get => damagePerSecond;
+        set => damagePerSecond = value;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if ((targetMask.value & (1 << other.gameObject.layer)) == 0) return;

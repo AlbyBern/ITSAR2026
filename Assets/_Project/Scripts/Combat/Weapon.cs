@@ -1,17 +1,22 @@
 using UnityEngine;
 
 /// <summary>
-/// Classe base di tutte le armi. Contiene la logica comune (cooldown, bersaglio)
-/// e lascia alle classi figlie solo il "come" si colpisce: il metodo astratto Fire.
-/// Player e torri usano le stesse armi: è la composizione a decidere chi spara.
+/// Classe base di tutte le armi. I valori (danno, cooldown…) arrivano da un WeaponData:
+/// cambiare arma o bilanciarla significa cambiare un asset, non il codice.
+/// I moltiplicatori del giocatore (PlayerStats) sono stato runtime e restano fuori dall'asset.
 /// </summary>
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] protected WeaponData data;
     [SerializeField, Tooltip("Se vuoto lo cerca sull'oggetto o sui genitori")] protected AutoTargeter targeter;
-    [SerializeField] protected float damage = 10f;
-    [SerializeField, Tooltip("Secondi tra due attacchi")] protected float cooldown = 1f;
 
+    private PlayerStats stats;
     private float timer;
+
+    public WeaponData Data => data;
+
+    protected float Damage => data.Damage * (stats != null ? stats.DamageMultiplier : 1f);
+    protected float Cooldown => data.Cooldown * (stats != null ? stats.CooldownMultiplier : 1f);
 
     /// <summary>Le armi ad area colpiscono anche senza un bersaglio preciso.</summary>
     protected virtual bool NeedsTarget => true;
@@ -22,6 +27,8 @@ public abstract class Weapon : MonoBehaviour
         {
             targeter = GetComponentInParent<AutoTargeter>();
         }
+        // Le torri non hanno PlayerStats: in quel caso i moltiplicatori valgono 1
+        stats = GetComponentInParent<PlayerStats>();
     }
 
     protected virtual void Update()
@@ -30,7 +37,7 @@ public abstract class Weapon : MonoBehaviour
         if (timer > 0f) return;
         if (NeedsTarget && targeter.CurrentTarget == null) return;
 
-        timer = cooldown;
+        timer = Cooldown;
         Fire();
     }
 
