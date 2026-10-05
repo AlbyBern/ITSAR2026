@@ -1,7 +1,8 @@
 # Contesto del progetto per l'AI
 
 Questo file descrive il progetto a un assistente AI (Claude, ChatGPT, Copilot, Cursor…).
-Allegalo o incollalo all'inizio di ogni conversazione.
+Allegalo o incollalo all'inizio di ogni conversazione. **Va aggiornato ogni volta che si
+aggiunge un sistema**: un contesto vecchio porta l'AI a inventare.
 
 ## Il gioco
 
@@ -12,39 +13,38 @@ nemico più vicino, il cristallo al centro va difeso dalle ondate di nemici.
 ## Tecnologia
 
 - Unity **6000.6.0f1** (Unity 6), Universal Render Pipeline
-- **Input System** (pacchetto nuovo, *Active Input Handling = Input System Package*):
-  il vecchio `UnityEngine.Input` (`Input.GetAxis`, `Input.GetKey`) **non funziona** in questo progetto
-- Input: asset `Assets/_Project/Input/GameControls.inputactions`, classe generata `GameControls`,
-  Action Map `Player` con `Move` (Vector2), `Sprint`, `PlaceTower`, `Pause` (Button)
+- **Input System** (*Active Input Handling = Input System Package*): `UnityEngine.Input` NON funziona.
+  Asset `Input/GameControls.inputactions`, classe generata `GameControls`, Action Map `Player`:
+  `Move` (Vector2), `Sprint`, `PlaceTower`, `Pause` (Button)
 - UI: uGUI con `UnityEngine.UI.Text` (non TextMeshPro)
-- Grafica: solo primitive e materiali URP Lit
+- API di Unity 6: `Rigidbody.linearVelocity` (non `velocity`), `FindFirstObjectByType` (non `FindObjectOfType`)
 
 ## Convenzioni
 
-- Una classe per file, nome del file uguale al nome della classe
-- Campi `private` con `[SerializeField]`; niente campi `public` per la configurazione
-- Riferimenti tra componenti recuperati in `Awake`; mai `GetComponent` o `Find` in `Update`
-- Movimenti e timer moltiplicati per `Time.deltaTime`
+- Una classe per file, nome del file uguale al nome della classe, nessun namespace
+- Campi `private` con `[SerializeField]`; proprietà in sola lettura per esporre i valori
+- Riferimenti recuperati in `Awake`; mai `GetComponent`/`Find` in `Update`
 - Iscrizione agli eventi in `OnEnable`, disiscrizione in `OnDisable`
-- Commenti in italiano, nomi di classi e metodi in inglese
-- Nessun namespace
+- Commenti in italiano, nomi in inglese
 
-## Struttura
+## Layer e fisica
 
-```
-Assets/_Project/
-  Scenes/    Arena (gioco), Sandbox_Lifecycle (esercizi)
-  Scripts/   Core, Player, UI
-  Prefabs/   Crystal
-  Input/     GameControls
-```
+`Ground`, `Obstacle`, `Player`, `Enemy`, `Projectile`, `Pickup`, `Structure`.
+`Projectile` tocca solo `Enemy` e `Obstacle`; `Pickup` tocca solo `Player`; `Enemy` non tocca `Enemy`.
 
-## Scena Arena
+## Sistemi esistenti
 
-- `Environment`: terreno, muri (`Walls`), ostacoli (`Obstacles`)
-- `Gameplay`: `Player`, `Crystal`, `SpawnPoints` (8 punti in cerchio)
-- `Main Camera`: visuale dall'alto
-- `UI`: canvas con `PausePanel`
+| Sistema | Classi principali |
+|---|---|
+| Player | `PlayerController` (CharacterController), `CameraFollow`, `GemCollector` |
+| Vita | `Health` (eventi `HealthChanged`, `Died`), `AreaEffect` (zone trigger) |
+| Combattimento | `AutoTargeter` (OverlapSphere + Linecast), `SimpleShooter`, `Projectile` (Rigidbody cinematico) |
+| Nemici (forniti) | `SimpleChaser`, `ContactDamage`, `EnemySpawner`, `DropOnDeath` |
+| UI | `PauseMenu` |
+
+## Scene
+
+`Arena` (gioco), `Sandbox_Lifecycle` (esercizi).
 
 ## Comandi verso Unity
 
